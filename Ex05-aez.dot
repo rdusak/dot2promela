@@ -1,0 +1,129 @@
+digraph G {
+color=black;orientation=portrait;fontsize=20;compound=true;size="30,40";ratio=compress;
+subgraph "cluster_main" {
+label="main";
+Node_0_0 [shape=Mrecord,fontsize=22,label="signed int return_value_atoi;"];
+Node_0_0 -> Node_0_1 ;
+Node_0_1 [shape=Mrecord,fontsize=22,label="return_value_atoi=atoi(argv[(signed long int)1]);"];
+Node_0_1 -> Node_0_2 ;
+Node_0_2 [shape=Mrecord,fontsize=22,label="signed int return_value_acz01;"];
+Node_0_2 -> Node_0_3 ;
+Node_0_3 [shape=Mrecord,fontsize=22,label="return_value_acz01=acz01(return_value_atoi);"];
+Node_0_3 -> Node_0_4 ;
+Node_0_4 [shape=Mrecord,fontsize=22,label="return return_value_acz01;"];
+Node_0_4 -> Node_0_5 ;
+Node_0_5 [shape=Mrecord,fontsize=22,label="Dead"];
+Node_0_5 -> Node_0_6 ;
+Node_0_6 [shape=Mrecord,fontsize=22,label="Dead"];
+Node_0_6 -> Node_0_7 ;
+Node_0_7 [shape=Mrecord,fontsize=22,label="Goto"];
+Node_0_7 -> Node_0_8 ;
+Node_0_8 [shape=Mrecord,fontsize=22,label="End of Function"];
+}
+subgraph "cluster_acz01" {
+label="acz01";
+Node_1_9 [shape=Mrecord,fontsize=22,label="signed int year;"];
+Node_1_9 -> Node_1_10 ;
+Node_1_10 [shape=Mrecord,fontsize=22,label="year = 1980;"];
+Node_1_10 -> Node_1_11 ;
+Node_1_11 [shape=diamond,fontsize=22,label="!(days \> 365)?"];
+Node_1_11 -> Node_1_25 [fontsize=20,label="true"];
+Node_1_11 -> Node_1_12 [fontsize=20,label="false"];
+Node_1_25 [shape=Mrecord,fontsize=22,label="Skip"];
+Node_1_25 -> Node_1_26 ;
+Node_1_12 [shape=diamond,fontsize=22,label="!(year % 4 == 0)?"];
+Node_1_12 -> Node_1_21 [fontsize=20,label="true"];
+Node_1_12 -> Node_1_13 [fontsize=20,label="false"];
+Node_1_26 [shape=Mrecord,fontsize=22,label="printf(\"%d\\n\", year);"];
+Node_1_26 -> Node_1_27 ;
+Node_1_21 [shape=Mrecord,fontsize=22,label="days = days - 365;"];
+Node_1_21 -> Node_1_22 ;
+Node_1_13 [shape=diamond,fontsize=22,label="!(days \> 366)?"];
+Node_1_13 -> Node_1_17 [fontsize=20,label="true"];
+Node_1_13 -> Node_1_14 [fontsize=20,label="false"];
+Node_1_27 [shape=Mrecord,fontsize=22,label="return 1;"];
+Node_1_27 -> Node_1_28 ;
+Node_1_22 [shape=Mrecord,fontsize=22,label="year = year + 1;"];
+Node_1_22 -> Node_1_23 ;
+Node_1_17 [shape=Mrecord,fontsize=22,label="(void)sizeof(signed int) /*4ul*/ ;"];
+Node_1_17 -> Node_1_18 ;
+Node_1_14 [shape=Mrecord,fontsize=22,label="days = days - 366;"];
+Node_1_14 -> Node_1_15 ;
+Node_1_28 [shape=Mrecord,fontsize=22,label="Dead"];
+Node_1_28 -> Node_1_29 ;
+Node_1_23 [shape=Mrecord,fontsize=22,label="Skip"];
+Node_1_23 -> Node_1_24 ;
+Node_1_18 [shape=Mrecord,fontsize=22,label="Assert\n(0 != 0)"];
+Node_1_18 -> Node_1_19 ;
+Node_1_15 [shape=Mrecord,fontsize=22,label="year = year + 1;"];
+Node_1_15 -> Node_1_16 ;
+Node_1_29 [shape=Mrecord,fontsize=22,label="Goto"];
+Node_1_29 -> Node_1_30 ;
+Node_1_24 [shape=Mrecord,fontsize=22,label="Goto"];
+Node_1_24 -> Node_1_11 ;
+Node_1_19 [shape=Mrecord,fontsize=22,label="Skip"];
+Node_1_19 -> Node_1_20 ;
+Node_1_16 [shape=Mrecord,fontsize=22,label="Goto"];
+Node_1_16 -> Node_1_19 ;
+Node_1_30 [shape=Mrecord,fontsize=22,label="End of Function"];
+Node_1_20 [shape=Mrecord,fontsize=22,label="Goto"];
+Node_1_20 -> Node_1_23 ;
+}
+subgraph "cluster___CPROVER__start" {
+label="__CPROVER__start";
+Node_2_31 [shape=Mrecord,fontsize=22,label="Skip"];
+Node_2_31 -> Node_2_32 ;
+Node_2_32 [shape=Mrecord,fontsize=22,label="__CPROVER_initialize();"];
+Node_2_32 -> Node_2_33 ;
+Node_2_33 [shape=Mrecord,fontsize=22,label="Assume\n(argc' \>= 1)"];
+Node_2_33 -> Node_2_34 ;
+Node_2_34 [shape=Mrecord,fontsize=22,label="Assume\n(argc' \<= 268435456)"];
+Node_2_34 -> Node_2_35 ;
+Node_2_35 [shape=Mrecord,fontsize=22,label="INPUT(\"argc\", argc');"];
+Node_2_35 -> Node_2_36 ;
+Node_2_36 [shape=Mrecord,fontsize=22,label="argv'[argc'] = ((char *)NULL);"];
+Node_2_36 -> Node_2_37 ;
+Node_2_37 [shape=Mrecord,fontsize=22,label="return'=main(argc', argv');"];
+Node_2_37 -> Node_2_38 ;
+Node_2_38 [shape=Mrecord,fontsize=22,label="OUTPUT(\"return\", return');"];
+Node_2_38 -> Node_2_39 ;
+Node_2_39 [shape=Mrecord,fontsize=22,label="End of Function"];
+}
+subgraph "cluster___CPROVER_initialize" {
+label="__CPROVER_initialize";
+Node_3_40 [shape=Mrecord,fontsize=22,label="Skip"];
+Node_3_40 -> Node_3_41 ;
+Node_3_41 [shape=Mrecord,fontsize=22,label="__CPROVER_dead_object = NULL;"];
+Node_3_41 -> Node_3_42 ;
+Node_3_42 [shape=Mrecord,fontsize=22,label="__CPROVER_deallocated = NULL;"];
+Node_3_42 -> Node_3_43 ;
+Node_3_43 [shape=Mrecord,fontsize=22,label="__CPROVER_malloc_is_new_array = 0 != 0;"];
+Node_3_43 -> Node_3_44 ;
+Node_3_44 [shape=Mrecord,fontsize=22,label="__CPROVER_malloc_object = NULL;"];
+Node_3_44 -> Node_3_45 ;
+Node_3_45 [shape=Mrecord,fontsize=22,label="__CPROVER_malloc_size = 0ul;"];
+Node_3_45 -> Node_3_46 ;
+Node_3_46 [shape=Mrecord,fontsize=22,label="__CPROVER_memory_leak = NULL;"];
+Node_3_46 -> Node_3_47 ;
+Node_3_47 [shape=Mrecord,fontsize=22,label="__CPROVER_next_thread_id = (unsigned long int)0;"];
+Node_3_47 -> Node_3_48 ;
+Node_3_48 [shape=Mrecord,fontsize=22,label="__CPROVER_pipe_count = (unsigned int)0;"];
+Node_3_48 -> Node_3_49 ;
+Node_3_49 [shape=Mrecord,fontsize=22,label="__CPROVER_rounding_mode = 0;"];
+Node_3_49 -> Node_3_50 ;
+Node_3_50 [shape=Mrecord,fontsize=22,label="__CPROVER_thread_id = (unsigned long int)0;"];
+Node_3_50 -> Node_3_51 ;
+Node_3_51 [shape=Mrecord,fontsize=22,label="__CPROVER_threads_exited = ARRAY_OF(FALSE);"];
+Node_3_51 -> Node_3_52 ;
+Node_3_52 [shape=Mrecord,fontsize=22,label="End of Function"];
+}
+subgraph "cluster_atoi" {
+rank=sink;
+label="atoi";
+Node_4_0 [shape=Mrecord,fontsize=22,label="?"];
+}
+Node_0_1 -> Node_4_0 [lhead="cluster_atoi",color=blue];
+Node_0_3 -> Node_1_0 [lhead="cluster_acz01",color=blue];
+Node_2_32 -> Node_3_0 [lhead="cluster___CPROVER_initialize",color=blue];
+Node_2_37 -> Node_0_0 [lhead="cluster_main",color=blue];
+}

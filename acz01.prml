@@ -1,0 +1,60 @@
+proctype acz01(int days) {
+int year;
+	
+Node_2_19:
+	goto Node_2_20
+Node_2_20:
+	year = 1980;
+	goto Node_2_21
+Node_2_21:
+	if
+	:: !(days > 365) -> goto Node_2_32
+	:: else -> goto Node_2_22
+	fi
+Node_2_32:
+	printf("%d\n", year);
+	goto Node_2_33
+Node_2_22:
+	if
+	:: !(year % 4 == 0) -> goto Node_2_29
+	:: else -> goto Node_2_23
+	fi
+Node_2_33:
+	goto Node_2_34
+Node_2_29:
+	days = days - 365;
+	goto Node_2_30
+Node_2_23:
+	if
+	:: !(days > 366) -> goto Node_2_27
+	:: else -> goto Node_2_24
+	fi
+Node_2_34:
+	goto Node_2_35
+Node_2_30:
+	year = year + 1;
+	goto Node_2_31
+Node_2_27:
+	assert(0 != 0);
+	goto Node_2_28
+Node_2_24:
+	days = days - 366;
+	goto Node_2_25
+Node_2_35:
+	goto Node_2_37
+Node_2_31:
+	goto Node_2_21
+Node_2_28:
+	goto Node_2_31
+Node_2_25:
+	year = year + 1;
+	goto Node_2_26
+Node_2_37:
+	goto END
+Node_2_26:
+	goto Node_2_28
+END:
+	skip;
+}
+init { run acz01(0); }
+
